@@ -72,7 +72,8 @@ services:
     ports:
       - 9187:9187
     environment:
-      DATA_SOURCE_NAME: "postgres://postgres:secret@postgres:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4"
+      #DATA_SOURCE_NAME: "postgres://postgres:secret@postgres:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4"
+      DATA_SOURCE_NAME: "postgres://postgres:secret@postgres:5432/kratos?sslmode=disable"
     links:
       - postgres
       - prometheus
