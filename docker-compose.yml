@@ -9,6 +9,15 @@ services:
     networks:
       - intranet
   
+  redis-exporter:
+    image: bitnami/redis-exporter:latest
+    ports:
+      - 9121:9121
+    command:
+      - '--redis.addr=redis://redis:6379'
+    networks:
+      - intranet
+
   grafana:
     image: grafana/grafana-enterprise:10.1.4-ubuntu
     container_name: grafana
