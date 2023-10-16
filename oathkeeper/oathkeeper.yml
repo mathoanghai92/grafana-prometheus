@@ -3,6 +3,10 @@ log:
   format: json
 
 serve:
+  prometheus:
+    port: 9000
+    host: 127.0.0.1
+    metrics_path: /metrics
   proxy:
     cors:
       enabled: true
