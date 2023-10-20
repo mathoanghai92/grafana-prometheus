@@ -45,9 +45,8 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
-      #- '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
-      - "--collector.filesystem.ignored-mount-points='^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'"
-
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+      #- "--collector.filesystem.ignored-mount-points='^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'"
     networks:
       - intranet
   
@@ -67,7 +66,8 @@ services:
       #- '--web.console.templates=/etc/prometheus/consoles'
       #- '--web.enable-lifecycle'
     depends_on:
-      #- cadvisor
+      - kratos
+      - oathkeeper
       - node-exporter
     networks:
       - intranet
@@ -134,6 +134,7 @@ services:
 
   oathkeeper:
     image: oryd/oathkeeper:v0.40
+    container_name: oathkeeper
     depends_on:
       - kratos
     ports:
@@ -154,6 +155,7 @@ services:
       - postgres
       - kratos-migrate
     image: oryd/kratos:v1.0.0
+    container_name: kratos
     ports:
       - '4433:4433' # public
       - '4434:4434' # admin
