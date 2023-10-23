@@ -24,9 +24,10 @@ serve:
   
   prometheus:
     port: 9000
+    host: 0.0.0.0
     metrics_path: /metrics
     hide_request_paths: false
-    collapse_request_paths: true
+    collapse_request_paths: false
     metric_name_prefix: ory_oathkeeper_
 
 
