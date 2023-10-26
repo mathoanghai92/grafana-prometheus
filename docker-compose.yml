@@ -26,6 +26,7 @@ services:
       - '3000:3000'
     volumes:
       - grafana-storage:/var/lib/grafana
+      #- /home/hai/project/grafana-prometheus/dashboards:/var/lib/grafana/dashboards
     depends_on:
       - prometheus
     networks:
