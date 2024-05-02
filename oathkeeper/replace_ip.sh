@@ -10,7 +10,7 @@ while true; do
 
         ip_cur=$(cat $FILE | awk '{print $7}')
 
-        sed -i 's|http://127.0.0.1|http://'$ip_cur'|g' oathkeeper.yml
+        sed -i 's|http://127.0.0.1|http://'"$ip_cur"'|g' oathkeeper.yml
 
         rm -f $FILE
     fi
